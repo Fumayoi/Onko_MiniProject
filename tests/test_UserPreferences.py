@@ -10,6 +10,7 @@ logging.debug("UnitTests: UserPreferences")
 class TestUserPreferences:
     """ Test Class for UserPreferences """
     @pytest.fixture
+
     def access(self, tmp_path:pathlib.Path) -> UserPreferences:
         """ Fixture to set up the Database environment for the tests to run in """
         test_db_dir:pathlib.Path = tmp_path / "test_db"
@@ -25,6 +26,8 @@ class TestUserPreferences:
 
     @pytest.fixture
     def fix_setup_db(self, tmp_path, access:UserPreferences) -> UserPreferences:
+        yield access
+
         """ Fixture to update user preferences """
         access.create_database_connection()
         temp_dir:pathlib.Path = tmp_path / "test_db"
