@@ -1,4 +1,3 @@
-from typing import Any, Generator
 import pytest
 import logging
 from src.UserPreferences import UserPreferences
