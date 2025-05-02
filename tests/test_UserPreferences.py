@@ -11,26 +11,26 @@ logging.debug("UnitTests: UserPreferences")
 class TestUserPreferences:
     """ Test Class for UserPreferences """
     @pytest.fixture
-    def access(self, tmp_path:pathlib.Path) -> Generator[UserPreferences, Any, None]:
+    def access(self, tmp_path:pathlib.Path) -> UserPreferences:
         """ Fixture to set up the Database environment for the tests to run in """
         test_db_dir:pathlib.Path = tmp_path / "test_db"
         test_db_dir.mkdir()
         access:UserPreferences = UserPreferences(test_db_dir)
-        yield access
+        return access
 
     @pytest.fixture
-    def fix_create_dir(self, access:UserPreferences) -> 'Generator[UserPreferences, Any, None]':
+    def fix_create_dir(self, access:UserPreferences) -> UserPreferences:
         """ Fixture to create a directory in which the tests are running in """
         access.create_directory()
-        yield access
+        return access
 
     @pytest.fixture
-    def fix_setup_db(self, tmp_path, access:UserPreferences) -> Generator[UserPreferences, Any, None]:
+    def fix_setup_db(self, tmp_path, access:UserPreferences) -> UserPreferences:
         """ Fixture to update user preferences """
         access.create_database_connection()
         temp_dir:pathlib.Path = tmp_path / "test_db"
         access.set_default_directory(temp_dir)
-        yield access
+        return access
 
     def test_create_directory(self, access:UserPreferences) -> None:
         """ Test method for the create directory method """
