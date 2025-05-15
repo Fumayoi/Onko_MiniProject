@@ -24,11 +24,11 @@ jobs:
           python-version: "3.12"
 
       - name: Installing Flake8
-        uses: |
+        run: |
           pip install flake8
 
       - name: Run Flake
-        uses: |
+        run: |
           flake8 src test
 
 
