@@ -30,6 +30,6 @@ jobs:
       - name: Run Flake
         continue-on-error: true
         run: |
-          flake8 src test
+          flake8 src tests
 
 
